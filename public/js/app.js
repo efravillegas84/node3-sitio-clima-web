@@ -7,7 +7,7 @@ climaForm.addEventListener('submit', (e)=>{
     e.preventDefault()
     const direccion = busquedaInput.value
 
-    url = 'http://localhost:3000/clima?direccion='+direccion
+    url = '/clima?direccion='+direccion
     
     msg1.textContent = 'Loading...'
     msg2.textContent = ''

@@ -1,5 +1,3 @@
-console.log('Archivo JavaScript del lado del cliente esta cargado')
-
 const climaForm = document.querySelector('form')
 const busquedaInput = document.querySelector('input')
 const msg1 = document.querySelector('#msg1')

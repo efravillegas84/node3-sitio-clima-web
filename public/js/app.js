@@ -11,9 +11,8 @@ const humedad = document.querySelector('#humedad')
 climaForm.addEventListener('submit', (e)=>{
     e.preventDefault()
     const direccion = busquedaInput.value
+    const recapcharesponse = document.getElementById("g-recaptcha-response").value
 
-    url = '/clima?direccion='+direccion
-    
     msg1.textContent        = 'Loading...'
     clima.textContent       = ''
     temperatura.textContent = ''
@@ -21,6 +20,12 @@ climaForm.addEventListener('submit', (e)=>{
     max.textContent         = ''
     presion.textContent     = ''
     humedad.textContent     = ''
+
+    if(recapcharesponse === undefined || recapcharesponse === '' || recapcharesponse === null){
+        msg1.textContent = 'Por favor complete captcha'
+    }
+    else{
+        url = '/clima?direccion='+direccion+'&recapcharesponse='+recapcharesponse
 
     fetch(url).then((response)=>{
         response.json().then((data)=>{
@@ -38,4 +43,6 @@ climaForm.addEventListener('submit', (e)=>{
             }
         })
     })
+    }
+
 })

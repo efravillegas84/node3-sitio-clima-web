@@ -4,6 +4,7 @@ const hbs = require('hbs')
 
 const geocode = require('./utils/geocode')
 const climaCordenadas = require('./utils/climaService')
+const verificarCaptcha = require('./utils/recaptchav2')
 
 const app = express()
 
@@ -50,6 +51,27 @@ app.get('/clima', (req, res)=>{
             error: 'debe proporcionar una direccion para buscar'
         })
     }
+
+    if(!req.query.recapcharesponse){
+        return res.send({
+            error: 'debe completar captcha'
+        })
+    }
+
+    try {
+        verificarCaptcha(req.query.recapcharesponse, (resp)=>{
+            if(resp === false){
+                return res.send({
+                    error: 'verificación captcha ha fallado intente de nuevo por favor'
+                })
+            }
+        })
+    } catch (error) {
+        return res.send({
+            error: 'verificación captcha ha fallado intente de nuevo por favor'
+        })
+    }
+
     geocode(req.query.direccion, (error, {latitud, longitud, nombre}={})=>{
         if (error) {
             return res.send({error})  

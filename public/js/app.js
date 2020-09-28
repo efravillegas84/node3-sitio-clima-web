@@ -29,6 +29,7 @@ climaForm.addEventListener('submit', (e)=>{
 
     fetch(url).then((response)=>{
         response.json().then((data)=>{
+            grecaptcha.reset();
             if(data.error){
                 msg1.textContent = data.error
             }

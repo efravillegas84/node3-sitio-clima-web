@@ -1,6 +1,6 @@
 const https =require('https')
 
-var secretKey = "6LeZn74ZAAAAAHnPwT73JcZlN_eCnWMtW6rfc8bj";
+var secretKey = process.env.RECAPTCHAV2_SECRET_KEY
 
 function verificarCaptcha(key, callback) {
         const url = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + key

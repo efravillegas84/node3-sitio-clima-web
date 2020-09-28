@@ -1,0 +1,3 @@
+[submodule "config"]
+	path = config
+	url = https://github.com/efravillegas84/node3-sitio-clima-web-conf.git
